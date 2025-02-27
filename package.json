@@ -2,7 +2,7 @@
   "name": "wxt-svelte-starter",
   "description": "manifest.json description",
   "private": true,
-  "version": "0.0.0",
+  "version": "v0.2.0.pre-alpha",
   "type": "module",
   "scripts": {
     "dev": "wxt",

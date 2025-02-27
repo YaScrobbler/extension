@@ -14,7 +14,7 @@
 </script>
 
 <main class="w-full h-full">
-  <div class="h-[calc(100%-64px)] pb-2 overflow-auto">
+  <div class="h-[calc(100%-60px)] overflow-auto">
     <svelte:component this={routes[$route]} />
   </div>
   <NavigationBar bind:route={$route} />
