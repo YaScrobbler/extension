@@ -1,7 +1,21 @@
 <script lang="ts">
-  
+  import NavigationBar from "@/lib/navigation/NavigationBar.svelte";
+  import { createRouter } from "./stores/router";
+  import { Routes } from "@/lib/navigation/routes.enum";
+  import { About, Home, Settings } from "./Pages";
+
+  const route = createRouter();
+
+  const routes = {
+    [Routes.Home]: Home,
+    [Routes.About]: About,
+    [Routes.Settings]: Settings,
+  }
 </script>
 
 <main class="w-full h-full">
-  YaScrobbler
+  <div class="h-[calc(100%-64px)] pb-2 overflow-auto">
+    <svelte:component this={routes[$route]} />
+  </div>
+  <NavigationBar bind:route={$route} />
 </main>
