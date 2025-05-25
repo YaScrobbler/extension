@@ -9,7 +9,6 @@ export default defineConfig({
     default_locale: "ru",
     permissions: ["storage"]
   },
-  // @ts-expect-error don't know why but not approve tw
   vite: () => {
     return { plugins: [tailwindcss()] }
   }

@@ -10,7 +10,7 @@
     [Routes.Home]: Home,
     [Routes.About]: About,
     [Routes.Settings]: Settings,
-  }
+  } as const;
 </script>
 
 <main class="w-full h-full">
