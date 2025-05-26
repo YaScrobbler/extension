@@ -7,7 +7,14 @@ export default defineConfig({
   modules: ['@wxt-dev/module-svelte'],
   manifest: {
     default_locale: "ru",
-    permissions: ["storage"]
+    permissions: ["storage"],
+    host_permissions: ['https://*.music.yandex.*/*'],
+    web_accessible_resources: [
+      {
+        resources: ["yamusic-main-world.js"],
+        matches: ["https://music.yandex.ru/*", "https://music.yandex.com/*"],
+      }
+    ]
   },
   vite: () => {
     return { plugins: [tailwindcss()] }

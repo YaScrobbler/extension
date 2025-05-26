@@ -1,0 +1,17 @@
+{
+  "home": {
+    "message": "Home"
+  },
+  "contributors": {
+    "message": "Contributors"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "links": {
+    "message": "Links"
+  },
+  "about": {
+    "message": "About"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "home": {
+    "message": "Главная"
+  },
+  "contributors": {
+    "message": "Вклад"
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "links": {
+    "message": "Ссылки"
+  },
+  "about": {
+    "message": "О приложении"
+  }
+}
