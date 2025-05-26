@@ -1,11 +1,17 @@
+import { logger } from "@/lib/core/logger";
+import { yaMusicURLs } from "@@/yamusic.urls";
+
 // entrypoints/example.content.ts
 export default defineContentScript({
-  matches: ['*://*/*'],
+  matches: yaMusicURLs,
   async main() {
-    console.log('Injecting script...');
-    await injectScript('/yamusic-main-world.js', {
-      keepInDom: true,
-    });
-    console.log('Done!');
+    logger.info('Injecting script...');
+    try {
+      await injectScript('/yamusic-main-world.js', {
+        keepInDom: true,
+      });
+    } catch(error) {
+      logger.error("Script wasn't injected succesfully. Error: ", error)
+    }
   },
 });

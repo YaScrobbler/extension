@@ -1,5 +1,6 @@
 import { defineConfig } from 'wxt';
 import tailwindcss from '@tailwindcss/vite';
+import { yaMusicURLs } from './yamusic.urls';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
@@ -8,11 +9,11 @@ export default defineConfig({
   manifest: {
     default_locale: "ru",
     permissions: ["storage"],
-    host_permissions: ['https://*.music.yandex.*/*'],
+    host_permissions: yaMusicURLs,
     web_accessible_resources: [
       {
         resources: ["yamusic-main-world.js"],
-        matches: ["https://music.yandex.ru/*", "https://music.yandex.com/*"],
+        matches: yaMusicURLs,
       }
     ]
   },

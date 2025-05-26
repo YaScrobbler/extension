@@ -6,7 +6,7 @@ export const queryAny = (node: ParentNode = document) =>
     <T extends Element>(...queries: string[]) =>
         queries.map(it => node.querySelector<T>(it)).find(node => node !== null);
 
-export async function ensureElementDefined<T extends Object>(elementGetter: () => T | undefined | null, timeoutMs: number) {
+export async function ensureElementDefined<T extends Object>(elementGetter: () => T | undefined | null, timeoutMs: number): Promise<T | null> {
     const timeout = Date.now() + timeoutMs;
 
     while (timeout > Date.now()) {
