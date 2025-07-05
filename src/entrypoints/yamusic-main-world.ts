@@ -2,6 +2,12 @@ import { YaMusicTrackInfo } from "@/lib/core/interfaces";
 import { getBottomBarRootEnsured } from "@/lib/yamusic-dom-refs";
 import { logger } from "@/lib/core/logger";
 
+
+if (import.meta.env.DEV) {
+  import("@/lib/core/debug");
+}
+
+
 export default defineUnlistedScript(main);
 
 function main(this: Window) {
