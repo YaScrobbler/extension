@@ -17,6 +17,11 @@ export default defineConfig({
       }
     ]
   },
+  webExt: {
+    startUrls: ["https://music.yandex.ru/"],
+    keepProfileChanges: true,
+    chromiumProfile: "./.wxt/chrome-data",
+  },
   vite: () => {
     return { plugins: [tailwindcss()] }
   }

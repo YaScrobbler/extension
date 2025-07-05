@@ -18,3 +18,14 @@ export const getTimecodeInput = () =>
         ("[class*='ChangeTimecode_slider']");
 
 export const getBottomBarRootEnsured = () => ensureElementDefined(getBottomBarRoot, 5 * second);
+
+if (import.meta.env.DEV) {
+    window.yascrobblerDebug = {
+        ...window.yascrobblerDebug,
+        getBottomBarRoot,
+        getTitleRoot,
+        getArtistsRoot,
+        getTimecodeInput,
+        getBottomBarRootEnsured
+    }
+}
