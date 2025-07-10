@@ -12,7 +12,7 @@ export default defineConfig({
     host_permissions: yaMusicURLs,
     "externally_connectable": {
       matches: yaMusicURLs
-    }
+    },
   },
   webExt: {
     startUrls: ["https://music.yandex.ru/"],
@@ -20,6 +20,8 @@ export default defineConfig({
     chromiumProfile: "./.wxt/chrome-data",
   },
   vite: () => {
-    return { plugins: [tailwindcss()] }
+    return {
+      plugins: [tailwindcss()],
+    }
   }
 });
