@@ -1,9 +1,8 @@
 import { ensureElementDefined, queryAny } from "./core/dom";
-import { second } from "./core/time";
 
 export const getBottomBarRoot = () =>
     queryAny()<HTMLDivElement>
-        ("[class*='PlayerBarDesktop_root']", "[class*='PlayerBarMobile_info']");
+        ("[class*='PlayerBarDesktopWithBackgroundProgressBar']", "[class*='PlayerBarMobile_root']");
 
 export const getTitleRoot = () =>
     queryAny(getBottomBarRoot())<HTMLAnchorElement | HTMLDivElement>
@@ -11,13 +10,36 @@ export const getTitleRoot = () =>
 
 export const getArtistsRoot = () =>
     queryAny(getBottomBarRoot())<HTMLDivElement>
-        ("[class*='Meta_link']")
+        ("[class*='SeparatedArtists_root']")
 
 export const getTimecodeInput = () =>
-    queryAny()<HTMLInputElement>
-        ("[class*='ChangeTimecode_slider']");
+    queryAny(getBottomBarRoot())<HTMLInputElement>
+        ("input");
 
-export const getBottomBarRootEnsured = () => ensureElementDefined(getBottomBarRoot, 5 * second);
+export const getPlayButton = () =>
+    queryAny(getBottomBarRoot())<HTMLButtonElement>
+        ("button[aria-label='Пауза']", "button[aria-label='Воспроизведение']");
+
+export const getCover = () =>
+    queryAny(getBottomBarRoot())<HTMLImageElement>
+        ("img");
+
+const pauseAriaLabels = ["Пауза"];
+
+export function isPlaybuttonEnabled(playbutton: HTMLButtonElement): boolean {
+    const ariaLabelAttr = playbutton.getAttribute("aria-label");
+
+    if (ariaLabelAttr !== null) {
+        return pauseAriaLabels.includes(playbutton.getAttribute("aria-label") || "")
+    }
+
+    throw new TypeError("Expected a button with aria-label attribute");
+}
+
+export const getBottomBarRootEnsured = () => ensureElementDefined(getBottomBarRoot);
+export const getTitleRootEnsured = () => ensureElementDefined(getTitleRoot);
+export const getArtistsRootEnsured = () => ensureElementDefined(getArtistsRoot);
+export const getPlayButtonEnsured = () => ensureElementDefined(getPlayButton);
 
 if (import.meta.env.DEV) {
     window.yascrobblerDebug = {
@@ -26,6 +48,8 @@ if (import.meta.env.DEV) {
         getTitleRoot,
         getArtistsRoot,
         getTimecodeInput,
-        getBottomBarRootEnsured
+        getBottomBarRootEnsured,
+        getPlayButton,
+        getCover,
     }
 }
