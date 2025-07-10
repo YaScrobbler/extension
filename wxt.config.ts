@@ -8,14 +8,11 @@ export default defineConfig({
   modules: ['@wxt-dev/module-svelte'],
   manifest: {
     default_locale: "ru",
-    permissions: ["storage"],
+    permissions: ["storage", "nativeMessaging", "tabs"],
     host_permissions: yaMusicURLs,
-    web_accessible_resources: [
-      {
-        resources: ["yamusic-main-world.js"],
-        matches: yaMusicURLs,
-      }
-    ]
+    "externally_connectable": {
+      matches: yaMusicURLs
+    }
   },
   webExt: {
     startUrls: ["https://music.yandex.ru/"],

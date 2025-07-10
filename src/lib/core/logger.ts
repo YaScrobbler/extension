@@ -16,6 +16,7 @@ export interface ILogger {
   error(...args: unknown[]): void;
   success(...args: unknown[]): void;
   debug(...args: unknown[]): void;
+  log(...args: unknown[]): void;
 }
 
 class Logger implements ILogger {
@@ -61,7 +62,7 @@ class Logger implements ILogger {
     return new Date().toLocaleTimeString();
   }
 
-  private log(type: LoggerTypes, ...args: unknown[]): void {
+  private _log(type: LoggerTypes, ...args: unknown[]): void {
     const style = Logger.styles[type];
     const time = this.getTime();
     const prefix = this.prefix ? `[${this.prefix}]` : "";
@@ -74,35 +75,29 @@ class Logger implements ILogger {
     );
   }
 
+  public log(...args: unknown[]): void {
+    this.debug(...args);
+  }
+
   public info(...args: unknown[]): void {
-    this.log("info", ...args);
+    this._log("info", ...args);
   }
 
   public warn(...args: unknown[]): void {
-    this.log("warn", ...args);
+    this._log("warn", ...args);
   }
 
   public error(...args: unknown[]): void {
-    this.log("error", ...args);
+    this._log("error", ...args);
   }
 
   public success(...args: unknown[]): void {
-    this.log("success", ...args);
+    this._log("success", ...args);
   }
 
   public debug(...args: unknown[]): void {
-    this.log("debug", ...args);
+    this._log("debug", ...args);
   }
-}
-
-class ProdLogger implements ILogger {
-  constructor(_: LoggerConstructor) {}
-
-  info(..._: unknown[]): void {}
-  warn(..._: unknown[]): void {}
-  error(..._: unknown[]): void {}
-  success(..._: unknown[]): void {}
-  debug(..._: unknown[]): void {}
 }
 
 const createLogger = (config: LoggerConstructor): ILogger => {
